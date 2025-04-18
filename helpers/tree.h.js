@@ -1,5 +1,5 @@
 
-const keccak256 = require('keccak256');
+
 const { StandardMerkleTree } = require("@openzeppelin/merkle-tree");
 const data = require('../../geni_data/index');
 
