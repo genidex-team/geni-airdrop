@@ -1,9 +1,13 @@
 
-
+const crypto = require('crypto');
 const { StandardMerkleTree } = require("@openzeppelin/merkle-tree");
 const data = require('../../geni_data/index');
 
 class Tree {
+
+    randomBytes32() {
+        return '0x' + crypto.randomBytes(32).toString('hex');
+    };
 
     parseRewardInput(rewards) {
         const values = [];
@@ -14,7 +18,7 @@ class Tree {
                 process.exit(1);
             }
             const amount = rewards[_address].amount.toString();
-            values.push([addr, amount]);
+            values.push([addr, amount, this.randomBytes32()]);
         }
         return values;
     }
@@ -42,7 +46,7 @@ class Tree {
         return values;
     }
 
-    
+
 }
 
 module.exports = new Tree();

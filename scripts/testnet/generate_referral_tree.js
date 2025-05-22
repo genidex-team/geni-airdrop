@@ -4,7 +4,7 @@ const fs = require('fs');
 const { StandardMerkleTree } = require("@openzeppelin/merkle-tree");
 
 const treeHelper = require('../../helpers/tree.h');
-const data = require('../../../geni_data/index');
+const data = require('geni_data');
 
 // ========= 1. INPUT DATA ========= //
 const referrals = data.testnetAirdrop.getReferralInput();

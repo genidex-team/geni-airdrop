@@ -1,10 +1,10 @@
 require("@nomicfoundation/hardhat-toolbox");
 require("@openzeppelin/hardhat-upgrades");
 require('@genidex/logger');
-const data = require('../geni_data/index');
+const data = require('geni_data');
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
-  solidity: "0.8.28",
+  solidity: "0.8.27",
   networks: data.getNetworkConfig()
 };

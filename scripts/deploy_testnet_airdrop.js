@@ -1,12 +1,17 @@
 // scripts/deploy_testnet_airdrop.js
-const hre = require("hardhat");
+
+const {ethers} = require("hardhat");
+const data = require("geni_data");
 
 async function main() {
-    const merkleRoot = "0x43b2b6307d5918829aa3b1dcdc22e53f561c133e4f63af1433369bc9e4d0fda0";
+    const rewardRoot = data.testnetAirdrop.getRewardRoot();
+    // const referralRoot = data.testnetAirdrop.getReferralRoot();
 
-    const TestnetAirdrop = await hre.ethers.getContractFactory("TestnetAirdrop");
-
-    const airdrop = await TestnetAirdrop.deploy(merkleRoot);
+    const TestnetAirdrop = await ethers.getContractFactory("TestnetAirdrop");
+    const geniTokenAddr = data.getGeniTokenAddress(network.name);
+    console.log({geniTokenAddr, rewardRoot})
+    const airdrop = await TestnetAirdrop.deploy(geniTokenAddr, rewardRoot);
+    data.testnetAirdrop.setAddress(network.name, airdrop.target);
     console.log(`✅ TestnetAirdrop deployed to: ${airdrop.target}`);
 }
 
